@@ -20,6 +20,16 @@ function addNewTimer() {
     const minutes = Number(document.getElementById("minute").value);
     const seconds = Number(document.getElementById("seconds").value);
 
+// Check if at least one input field is filled
+if (!(hours || minutes || seconds)) {
+    alert('Please enter the time.');
+    return;
+}
+if (hours>23 || minutes>59 || seconds>59) {
+    alert('Please enter the  valid time ,minutes and seconds must be less than 60 and hours less than 24.');
+    return;
+}
+
     // total time calculation in seconds
     const totalTime = hours * 3600 + minutes * 60 + seconds;
 
@@ -82,6 +92,9 @@ function deleteTimer(deleteButton) {
     --numberOfActiveTimers;
     if (numberOfActiveTimers == 0) {
         noTimerDisplayMessage.style.display = "block";
+    }
+    else{
+        noTimerDisplayMessage.style.display = "none";
     }
 }
 // event listeners
